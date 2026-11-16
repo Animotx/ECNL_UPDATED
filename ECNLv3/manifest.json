@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "ECNL Shape & Color Game Helper",
+  "version": "2.7.1",
+  "description": "Waits for a stable board, analyzes the target color, and highlights the matching answer.",
+  "host_permissions": [
+    "https://ecnlmediamarket.com/*",
+    "https://www.ecnlmediamarket.com/*"
+  ],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "action": {
+    "default_title": "Hard refresh this tab"
+  },
+  "commands": {
+    "hard-refresh-current-tab": {
+      "suggested_key": "Ctrl+Shift+Y",
+      "description": "Hard refresh the current tab"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://ecnlmediamarket.com/*",
+        "https://www.ecnlmediamarket.com/*"
+      ],
+      "js": [
+        "solving-colors.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
